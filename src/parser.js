@@ -20,6 +20,7 @@ const parser = (tokens) => {
         }
       }
     }
+    cur++; // skip right brace
     return { type: 'object', value };
   };
 
@@ -38,7 +39,8 @@ const parser = (tokens) => {
     }
     // skip right bracket
     cur++;
-    if (tokens[cur].type === 'comma') {
+
+    if (cur < tokens.length && tokens[cur].type === 'comma') {
       cur++;
     }
     return { type: 'array', value };
